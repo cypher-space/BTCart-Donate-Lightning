@@ -1,4 +1,4 @@
-# ⚡ Lightning Widget
+# ⚡ Lightning DONATE Widget
 
 Start accepting Bitcoin payments on your website in minutes. Beautiful widgets, no fees, instant payouts.
 
@@ -15,7 +15,7 @@ Start accepting Bitcoin payments on your website in minutes. Beautiful widgets, 
 
 **Example**
 ```
-<lightning-widget 
+<lightning-donate 
     name="René Aaron" 
     accent="#20c997" 
     to="reneaaron@getalby.com" 
