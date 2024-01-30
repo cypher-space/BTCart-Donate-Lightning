@@ -541,11 +541,9 @@ select {
 }
 
 .card {
-  box-shadow: 0px 32px 32px rgba(0, 0, 0, 0.07), 0px 16px 16px rgba(0, 0, 0, 0.07), 0px 8px 8px rgba(0, 0, 0, 0.07), 0px 4px 4px rgba(0, 0, 0, 0.07), 0px 2px 2px rgba(0, 0, 0, 0.07);
   border-radius: 25px;
   color: var(--color);
   padding: 25px;
-  background-color: var(--accent);
   min-height: 290px;
   display: flex;
   justify-content: center;
@@ -680,7 +678,6 @@ a:hover {
 
 .pill:hover {
   color: var(--accent);
-  background: var(--color);
 }
 
 .pill-container {
