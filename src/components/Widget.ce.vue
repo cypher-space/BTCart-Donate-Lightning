@@ -137,7 +137,7 @@ export default {
   name: "LightningWidget",
   props: {
     name: { type: String, required: true },
-    to: { type: String, required: true, default: "reneaaron@getalby.com" },
+    to: { type: String, required: true, default: "osmu@strike.me" },
 
     amounts: { type: String, required: false, default: "10,100,1000" },
     labels: { type: String, required: false },
@@ -149,7 +149,7 @@ export default {
     backgroundImage: { type: String, default: null },
 
     // Deprecated --> use `to`
-    address: { type: String, required: false, default: "reneaaron@getalby.com" },
+    address: { type: String, required: false, default: "osmu@strike.me" },
 
     // Debugging purposes only 
     debug: { type: Boolean, default: false },
