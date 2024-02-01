@@ -101,8 +101,7 @@
         <div v-else-if="step == 'qr'">
           <div class="mb-1">
             <a :href="'lightning:' + paymentRequest">
-              <img class="qr" width="150" height="150" :src="'https://embed.twentyuno.net/qr/' + paymentRequest"
-                alt="qr" />
+              <img :src="qrCodeDataUrl" class="qr" width="150" height="150" alt="QR Code" />
             </a>
           </div>
           <Transition name="fade" mode="out-in">
@@ -132,6 +131,7 @@
 <script>
 import JSConfetti from 'js-confetti'
 import { fetchInvoice, fetchParams, contrastingColor, luma, formatAmount } from './utils/helpers';
+import QRCode from 'qrcode';
 
 export default {
   name: "LightningWidget",
@@ -166,6 +166,7 @@ export default {
       qrTimeoutElapsed: false,
       paymentType: 'Invoice',
       errorTitle: '',
+      qrCodeDataUrl: '',
       errorMessage: '',
       amountList: [],
     };
@@ -228,6 +229,16 @@ export default {
     },
     pay: async function () {
       await this['pay' + this.paymentType]();
+
+          QRCode.toDataURL(this.paymentRequest, (error, dataUrl) => {
+            if (error) {
+              console.error('Error generating QR code:', error);
+            } else {
+              this.qrCodeDataUrl = dataUrl;
+            }
+          });
+
+
     },
     payKeysend: async function () {
       let error = false;
@@ -273,7 +284,7 @@ export default {
         // Fetch invoice
         try {
           invoice = await fetchInvoice(this.to || this.address, this.currentAmount, this.comment);
-          this.paymentRequest = invoice.payment_request;
+          this.paymentRequest = invoice.invoice.pr;
         }
         catch (e) {
           this.error('Sorry', 'An error happend during the payment. Try again?');
@@ -284,7 +295,7 @@ export default {
         webln = window.webln;
         if (webln) {
           await webln.enable();
-          await webln.sendPayment(invoice.payment_request);
+          await webln.sendPayment(invoice.invoice.pr);
 
           this.step = 'thankyou';
           this.celebrate();

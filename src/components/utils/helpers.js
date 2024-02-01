@@ -20,7 +20,7 @@ function hexToRGB(color)
 }
 
 async function fetchInvoice(to, amount, comment) {
-  const response = await fetch(proxy + `/generate-invoice?ln=${to}&amount=${amount}&comment=${comment}`, {
+  const response = await fetch(proxy + `/generate-invoice?ln=${to}&amount=${amount * 1000}&comment=${comment}`, {
     headers: {
       "Accept": "application/json",
       "Content-Type": "application/json",
